@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.14b9d112.css",
+    "main.js": "/react-gh-pages/static/js/main.06515d77.js",
+    "static/media/brighthrLogo-2.svg": "/react-gh-pages/static/media/brighthrLogo-2.6d515ff82256cd704e4b230e84692498.svg",
+    "index.html": "/react-gh-pages/index.html",
+    "main.14b9d112.css.map": "/react-gh-pages/static/css/main.14b9d112.css.map",
+    "main.06515d77.js.map": "/react-gh-pages/static/js/main.06515d77.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14b9d112.css",
+    "static/js/main.06515d77.js"
+  ]
+}
