@@ -4,7 +4,9 @@
   
 
 
-[Demo⚡️](https://669e781575ffeb6a4906ec24--shimmering-nougat-86d595.netlify.app/)
+[Live Demo 1⚡️](https://669faf16974a5a333ca6d772--enchanting-kitten-bda36d.netlify.app//)
+
+[Live Demo 2⚡️](https://669e781575ffeb6a4906ec24--shimmering-nougat-86d595.netlify.app/)
 
 ## Available Scripts
 

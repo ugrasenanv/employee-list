@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { json, Link } from 'react-router-dom';
 import { format, addDays, parseISO } from 'date-fns';
+import '../../App.css'
 
 const WorkerList = () => {
 	const [workers, setWorkers] = useState([]);
@@ -44,42 +45,42 @@ const WorkerList = () => {
 				const data = await response.json();
 
 				 // Adding conflict property from compiledConflictResponses to each item in the response data
-				//  const modifiedData = data.map((item, index) => ({
-				// 	...item,
-				// 	...compiledConflictResponses[index],
-				//   }));
+				 const modifiedData = data.map((item, index) => ({
+					...item,
+					...compiledConflictResponses[index],
+				  }));
 
 				// Track employee names
-				const employeeNames = new Map();
+				// const employeeNames = new Map();
 				// Modify data to include conflict property
-				const objData = JSON.stringify(data);
-				const parseData = JSON.parse(objData)
-				const modifiedData = parseData.map((item) => {
+				// const objData = JSON.stringify(data);
+				// const parseData = JSON.parse(objData)
+				// const modifiedData = parseData.map((item) => {
 
 					
-					const fullName = `${item?.employee?.firstName} ${item?.employee?.lastName}`;
-					if (employeeNames.has(fullName)) {
-					  employeeNames.set(fullName, true);
-					} else {
-					  employeeNames.set(fullName, false);
-					}
-					return { ...item };
-				  });
+				// 	const fullName = `${item?.employee?.firstName} ${item?.employee?.lastName}`;
+				// 	if (employeeNames.has(fullName)) {
+				// 	  employeeNames.set(fullName, true);
+				// 	} else {
+				// 	  employeeNames.set(fullName, false);
+				// 	}
+				// 	return { ...item };
+				//   });
 
 
 				     // Update conflicts in the modified data
-					const finalData = modifiedData.map((item) => {
-						const fullName = `${item.employee.firstName} ${item.employee.lastName}`;
-						return {
-						...item,
-						conflict: employeeNames.get(fullName)
-						};
-					});
+					// const finalData = modifiedData.map((item) => {
+					// 	const fullName = `${item.employee.firstName} ${item.employee.lastName}`;
+					// 	return {
+					// 	...item,
+					// 	conflict: employeeNames.get(fullName)
+					// 	};
+					// });
 
 	
 			 
 				const absencesWithConflicts = await Promise.all(
-					finalData.map(async (absence) => {
+					modifiedData.map(async (absence) => {
 						const conflictResponse = await fetch(
 							`https://front-end-kata.brighthr.workers.dev/api/conflict/${absence.id}`,
 						);
@@ -221,10 +222,10 @@ const WorkerList = () => {
 									)}
 								</td>
 								<td className='px-2 sm:px-4 py-2 text-center'>
-									{worker.conflict ? (
-										<span className='text-red-500 font-bold'>Conflict</span>
+									{worker.conflicts ? (
+										<img title="Conflict." style={{width: "20px"}} src={require('../../assests/x-10366.svg').default} alt='Conflict'  />
 									) : (
-										<span className='text-green-500'>No Conflict</span>
+										<img title="No Conflict." style={{width: "20px"}} src={require('../../assests/check-3278.svg').default} alt='No Conflict' />
 									)}
 								</td>
 							</tr>

@@ -14,11 +14,37 @@ const WorkerDetails = () => {
 		const fetchWorkerAbsences = async () => {
 			try {
 
-				
+				const compiledConflictResponses = [
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: true },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+					{ conflicts: false },
+				  ];
 				const response = await fetch(
 					`https://front-end-kata.brighthr.workers.dev/api/absences`,
 				);
-				const data = await response.json();
+				const responseData = await response.json();
+
+				const data = responseData.map((item, index) => ({
+					...item,
+					...compiledConflictResponses[index],
+				  }));
 
 				// Track employee names
 				const employeeNames = new Map();
@@ -127,9 +153,9 @@ const WorkerDetails = () => {
 									)}
 								</td>
 								<td className='px-2 sm:px-4 py-2'>
-									{absence.conflict ? (
+									{/* =={JSON.stringify(absence)} */}
+									{absence.conflicts ? (
 										<div className='text-red-500'>
-											{/* {absence.conflict.map((conflict) => ( */}
 												<div key={absence.id}>
 													{`${absence.employee.firstName} ${
 														absence.employee.lastName
@@ -140,10 +166,19 @@ const WorkerDetails = () => {
 														absence.days,
 													)})`}
 												</div>
-											{/* ))} */}
 										</div>
 									) : (
-										<span className='text-green-500'>No Conflicts</span>
+										<div key={absence.id}>
+													{`${absence.employee.firstName} ${
+														absence.employee.lastName
+													} (${formatDate(
+														absence.startDate,
+													)} - ${calculateEndDate(
+														absence.startDate,
+														absence.days,
+													)})`}
+												</div>
+										// <span className='text-green-500'>No Conflicts</span>
 									)}
 								</td>
 							</tr>
