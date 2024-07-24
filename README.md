@@ -6,6 +6,8 @@
 
 [Live Demo 1⚡️](https://669faf16974a5a333ca6d772--enchanting-kitten-bda36d.netlify.app//)
 
+[Live Demo 1⚡️ (https://velvety-blancmange-8520f0.netlify.app/)
+
 
 
 ## Available Scripts
